@@ -1,21 +1,24 @@
-version: '3'
-
+version: "3" 
 services:
-    jenkins:
-        container_name: jenkins
-        image: jenkins/jenkins:lts
-        working_dir: /var/www
+    master:
+        image: eeacms/jenkins-master
         ports:
-            - "10010:50000"
-            - "10011:8080"
+            - "80:8080"
         volumes:
             - jenkins_home:/var/jenkins_home
-        networks:
-            - backend
+
+    worker:
+        build: jenkins-slave/ 
+        environment:
+            JENKINS_MASTER: "http://master:8080"
+            JENKINS_NAME: "worker"
+            JENKINS_USER: "danib"
+            JENKINS_PASS: "1234567890"
+            JENKINS_RETRY: "10"
+        volumes:
+        - jenkins-worker:/var/jenkins_home/worker
 
 volumes:
     jenkins_home:
+    jenkins-worker:
 
-networks:
-    backend:
-        external: true
