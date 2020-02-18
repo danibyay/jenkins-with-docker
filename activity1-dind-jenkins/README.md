@@ -1,7 +1,5 @@
 # Activity 1
 
-Following the first activity, without upgrading the configuration.
+Following the first activity of the jenkins workshop and without upgrading the configuration, this docker compose file sets up jenkins master (only) with docker.
 
-This docker compose file sets up jenkins master (only) with docker.
-
-It sets up a network and volumes for the images.
+It also sets up a network and volumes for the images.
