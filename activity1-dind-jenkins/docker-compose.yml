@@ -10,7 +10,10 @@ services:
     - jenkins-data:/var/jenkins_home
     - jenkins-docker-certs:/certs/client
     networks:
-    - jenkins
+      jenkins:
+        aliases:
+          - docker
+    privileged: true
 
   jenkins-blueocean:
     image: jenkinsci/blueocean
